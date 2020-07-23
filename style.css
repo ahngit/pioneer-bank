@@ -1,1 +1,30 @@
 body{padding: 100px;}
+
+.submit-area, .diposit-box, .withdrow-box {
+	margin-top: 30px;
+	padding: 40px;
+	border-radius: 10px;
+	box-shadow: 5px 5px 10px red;
+}
+
+#transition-area{
+	display: none;
+}
+
+
+.deposet {
+	background-color: blue;
+  }
+  .withdrow {
+	background-color: grey;
+  }
+  
+  .balance{
+	background-color: green;
+  }
+  .single-box {
+	padding: 25px;
+	border-radius: 10px;
+	color: #fff;
+	margin: 0px 20px;
+}

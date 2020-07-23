@@ -9,8 +9,59 @@
 </head>
 <body>
     
+<div class="login-area" id="login-area">
     <h1 class="text-center">Welcome to Pioneer Bank</h1>
+    <div class="submit-area">
+        <h4>Login</h4>
+        <input type="email" class="form-control" placeholder="Email">
+        <br>
+        <input type="password" class="form-control" placeholder="Password">
+        <br>
+        <button class="btn btn-success" id="login">Enter</button>
+    </div>
+</div>
 
+<div id="transition-area">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="deposet single-box">
+                <h5>Deposet</h5>
+                <h2>$ <span id="diposit-text">00</span>  </h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="withdrow single-box">
+                <h5>Withdrow</h5>
+                <h2>$ <span id="withdrow-text">00</span> </h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="balance single-box">
+                <h5>Balance</h5>
+                <h2>$ <span id="balance-text">1200</span> </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="diposit-box">
+                <h4>Deposit</h4>
+                <input type="text" placeholder="$ Amount you want to Deposit" class="form-control" id="diposit-input">
+                <br>
+                <button class="btn btn-success" id="diposit">Diposit</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="withdrow-box">
+                <h4>Withdrow</h4>
+                <input type="text" placeholder="$ Amount you want to withdrow" class="form-control" id="withdrow-input">
+                <br>
+                <button class="btn btn-success" id="withdrow">Withdraw</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -23,5 +74,59 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script>
+    const login = document.getElementById("login");
+    login.addEventListener('click', function(){
+        const loginArea = document.getElementById("login-area");
+        loginArea.style.display = "none";
+        const transitionArea = document.getElementById("transition-area");
+        transitionArea.style.display = "block";
+    })
+
+
+    // diposit button
+    const diposit = document.getElementById("diposit");
+    diposit.addEventListener("click", function(){
+        const dipositAmount = document.getElementById("diposit-input").value;
+        const dipositNumber = parseFloat(dipositAmount);
+        
+        // diposit text
+        UpdateSpanText("diposit-text", dipositNumber);
+        // all balance
+        UpdateSpanText("balance-text", dipositNumber);
+
+        
+
+
+        document.getElementById("diposit-input").value = "";
+    })
+
+
+    // withdrow
+    const withdrow = document.getElementById("withdrow");
+    withdrow.addEventListener("click", function(){
+        const withdrowAmount = document.getElementById("withdrow-input").value;
+        const withdrowNumber = parseFloat(withdrowAmount);
+       
+       // withdraw text
+       UpdateSpanText("withdrow-text", withdrowNumber);
+        // all balance withdraw
+       UpdateSpanText("balance-text", -1 * withdrowNumber);
+    })
+
+
+    // function innerText  
+    function UpdateSpanText(id, dipositNumber){
+        const allBalance = document.getElementById(id).innerText;
+        const allBalanceNumber = parseFloat(allBalance);
+        const totalBal = allBalanceNumber + dipositNumber;
+        document.getElementById(id).innerText = totalBal;
+    }
+
+
+
+
+</script>
 </body>
 </html>
